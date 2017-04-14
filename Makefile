@@ -2,8 +2,7 @@ src = $(wildcard *.c)
 obj = $(src:.c=.o)
 
 BINARY=fwn
-CC=gcc
-#CC=clang
+CC=cc
 CFLAGS=-Wall -Wextra -O3 -std=c11 -pedantic -march=native
 LDFLAGS=
 
