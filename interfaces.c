@@ -9,42 +9,42 @@
 #include "interfaces.h"
 
 int interfaces(void) {
-  struct ifaddrs *ifap, *ifa;
+    struct ifaddrs *ifap, *ifa;
 
-  if (getifaddrs(&ifap) == -1) {
-    perror("getifaddrs");
-    return 1;
-  }
+    if (getifaddrs(&ifap) == -1) {
+        perror("getifaddrs");
+        return 1;
+    }
 
-  for (ifa = ifap; ifa != NULL; ifa = ifa->ifa_next) {
-    const char *afstr = "none";
-    if (ifa->ifa_addr != NULL) {
-      switch (ifa->ifa_addr->sa_family) {
-      case AF_INET:
-        afstr = "AF_INET";
-        break;
-      case AF_INET6:
-        afstr = "AF_INET6";
-        break;
+    for (ifa = ifap; ifa != NULL; ifa = ifa->ifa_next) {
+        const char *afstr = "none";
+        if (ifa->ifa_addr != NULL) {
+            switch (ifa->ifa_addr->sa_family) {
+            case AF_INET:
+                afstr = "AF_INET";
+                break;
+            case AF_INET6:
+                afstr = "AF_INET6";
+                break;
 #ifdef __linux__
-      case PF_PACKET:
-        afstr = "PF_PACKET";
-        break;
+            case PF_PACKET:
+                afstr = "PF_PACKET";
+                break;
 #endif
 #ifdef __APPLE__
-      case AF_LINK:
-        afstr = "AF_LINK";
-        break;
+            case AF_LINK:
+                afstr = "AF_LINK";
+                break;
 #endif
-      default:
-        afstr = "unknown";
-        printf("FAMILY: %d\n", ifa->ifa_addr->sa_family);
-      }
+            default:
+                afstr = "unknown";
+                printf("FAMILY: %d\n", ifa->ifa_addr->sa_family);
+            }
+        }
+        printf("%s: %s\n", ifa->ifa_name, afstr);
     }
-    printf("%s: %s\n", ifa->ifa_name, afstr);
-  }
 
-  freeifaddrs(ifap);
+    freeifaddrs(ifap);
 
-  return 0;
+    return 0;
 }

@@ -1,5 +1,3 @@
 #include "interfaces.h"
 
-int main(void) {
-  return(interfaces());
-}
+int main(void) { return (interfaces()); }
