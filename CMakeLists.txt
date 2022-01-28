@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(fwn C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 17)
 if (NOT MSVC)
   set(CMAKE_C_FLAGS "-Wall -Wextra -pedantic")
 endif()
