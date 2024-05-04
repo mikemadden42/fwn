@@ -36,3 +36,6 @@
 build
 debug
 release
+
+# clion config
+.idea/
